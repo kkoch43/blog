@@ -11,6 +11,9 @@
 
 	{{ Form::text('title', null, ["class" => 'form-control input-lg'])}}
 
+	{{ Form::label('slug', 'Slug:') }}
+	{{ Form::text('slug', null, ['class' => 'form-control'])}}
+
 	{{ Form::label('body', 'Body:', ["class" => 'btn-h1-spacing']) }}
 	{{ Form::textarea('body', null, ["class" => 'form-control'])}}
 	</div>
