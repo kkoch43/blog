@@ -10,6 +10,13 @@
 	<h1>{{ $post->title }}</h1>
 
 	<p class="lead">{{ $post->body }}</p>
+
+	<hr>
+	<div class="tags">
+	@foreach ($post->tags as $tag)
+		<span class="label label-default"> {{ $tag->name }}</span>
+		@endforeach
+	</div>
 	</div>
 
 		<div class="col-md-4">
@@ -18,7 +25,6 @@
 			<dl class="horizontal">
 				<label>URL:</label>
 				<p><a href="{{ url('blog/'.$post->slug) }}">{{ url($post->slug) }}</a></p>
-				<a herf="{{ ur }}"
 
 				</dl>
 

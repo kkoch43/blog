@@ -1,7 +1,10 @@
 @extends('main')
 
 @section('title', '| Edit Blog Post')
-<link media="all" type="text/css" rel="stylesheet" href="css/select2.min.css">
+
+@section('stylesheets')
+	{!! Html::style('css/select2.min.css') !!}
+	@endsection
 
 @section('content')
 
@@ -17,6 +20,9 @@
 
 	{{ Form::label('category_id', 'Category:') }}
 	{{ Form:: select('category_id', $categories, null, ['class' => 'form-control']) }}
+
+	{{ Form::label('tags', 'Tags:', ['class' => 'form-spacing-top']) }}
+	{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-kkk', 'multiple' => 'multiple']) }}
 
 	{{ Form::label('body', 'Body:', ["class" => 'btn-h1-spacing']) }}
 	{{ Form::textarea('body', null, ["class" => 'form-control'])}}
@@ -61,7 +67,12 @@
 
 	@section('scripts')
 
+	{!! Html::script('js/select2.min.js') !!}
 
-		<script src="select2.full.min.js"></script>
+		<script type="text/javascript">
+			$('.select2-kkk').select2();
+			$('.select2-kkk').select2().val(tagsForThisPost).trigger('change');
+		</script>
+
 
 @endsection

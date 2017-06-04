@@ -51,6 +51,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         // validate the data
         $this->validate($request, array(
             'title'=> 'required|max:255',
@@ -68,6 +69,8 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        $post->tags()->sync($request->tags, false);
 
         Session::flash('success', 'The blog post was successfully saved!');
 
@@ -103,8 +106,17 @@ class PostController extends Controller
             $cats[$category->id] = $category->name;
         }
 
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+
+       //a slight revision of the array
+            $tagsForThisPost = json_encode($post->tags->pluck('id'));
+        }
+
         //return the view and pass in the variable we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -143,6 +155,8 @@ class PostController extends Controller
         $post->body = $request->input('body');
 
         $post->save();
+
+        $post->tags()->sync($request->tags, true);
 
         //set flash data with success message
 
