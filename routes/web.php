@@ -22,9 +22,16 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('auth/register', 'Auth\RegisterController@register');
 
     //Password Reset Routes
-    Route::get('password/reset/{token?}', ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
-    Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+   // categories
+    Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+
+    //tags
+    Route::resource('tags', 'TagController', ['except' => ['create']]);
 
     Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
         ->where('slug', '[\w\d\-\_]+');

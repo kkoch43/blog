@@ -18,6 +18,13 @@
 			<dl class="horizontal">
 				<label>URL:</label>
 				<p><a href="{{ url('blog/'.$post->slug) }}">{{ url($post->slug) }}</a></p>
+				<a herf="{{ ur }}"
+
+				</dl>
+
+				<dl class="horizontal">
+					<label>Category</label>
+					<p>{{ $post->category->name }}</p>
 
 				</dl>
 

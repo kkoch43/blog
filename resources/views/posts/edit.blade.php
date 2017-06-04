@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('title', '| Edit Blog Post')
+<link media="all" type="text/css" rel="stylesheet" href="css/select2.min.css">
 
 @section('content')
 
@@ -13,6 +14,9 @@
 
 	{{ Form::label('slug', 'Slug:') }}
 	{{ Form::text('slug', null, ['class' => 'form-control'])}}
+
+	{{ Form::label('category_id', 'Category:') }}
+	{{ Form:: select('category_id', $categories, null, ['class' => 'form-control']) }}
 
 	{{ Form::label('body', 'Body:', ["class" => 'btn-h1-spacing']) }}
 	{{ Form::textarea('body', null, ["class" => 'form-control'])}}
@@ -50,6 +54,14 @@
 		{!! Form::close()!!}
 
 	</div>
+</div>
 
 
 @stop
+
+	@section('scripts')
+
+
+		<script src="select2.full.min.js"></script>
+
+@endsection

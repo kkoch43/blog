@@ -4,6 +4,8 @@
 @include('partials._head')
 
 
+
+
   <body>
 
 @include('partials._nav')
