@@ -56,4 +56,7 @@ Route::group(['middleware' => ['web']], function() {
 
     Route::get('pixcom', 'PagesController@getPixcom');
 
+   // Comments
+    Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store'] );
+
 });
