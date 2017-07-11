@@ -29,7 +29,7 @@
 			<h1>Create New Post</h1>
 			<hr>
 
-			{!! Form::open(['url' => 'save', 'data-parsely-validate' =>'']) !!}
+			{!! Form::open(['url' => 'save', 'data-parsely-validate' =>'', 'files' => true]) !!}
    				 
    				 {{ Form::label('title', 'Title:')}}
    				 {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
@@ -51,6 +51,9 @@
 				<option value="{{ $tag->id }}">{{ $tag->name }}</option>
 			@endforeach
 		</select>
+
+				{{ Form::label('featured_image', 'Upload featured image:') }}
+				{{ Form::file('featured_image') }}
 
 
 
